@@ -27,9 +27,9 @@ int main() {
 
     LEDController LEDcontroller = LEDController();
 
-
-    LEDcontroller.move();
-
+    for(int i = 0; i < 25; i++) {
+        LEDcontroller.move();
+    }   
 
 
     std::cout << "\n all fine \n"; 

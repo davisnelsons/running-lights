@@ -12,6 +12,7 @@ class AbstractLEDModel
         virtual void setState(bool state) = 0;
         virtual bool getState() = 0;
         virtual void attachDisplay(AbstractDisplay* display) = 0;
+        virtual void updateDisplay() = 0;
 };
 
 #endif

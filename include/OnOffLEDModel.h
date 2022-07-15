@@ -10,6 +10,7 @@ class OnOffLEDModel : public AbstractLEDModel
         bool getState();
         void setState(bool state);
         void attachDisplay(AbstractDisplay* display);
+        void updateDisplay();
     private:
         AbstractDisplay* display;
 };

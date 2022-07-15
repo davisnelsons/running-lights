@@ -14,10 +14,14 @@ bool OnOffLEDModel::getState()
 void OnOffLEDModel::setState(bool state)
 {
     this->state = state;
+    
+}
+void OnOffLEDModel::updateDisplay() {
     if(display) {
         this->display->update();
     }
 }
+
 
 void OnOffLEDModel::attachDisplay(AbstractDisplay* display)
 {

@@ -11,12 +11,18 @@ LEDController::LEDController()
         textDisplay = new TextDisplay((this->LEDs)[i]);
         (this->LEDs)[i]->attachDisplay(textDisplay);
     }
+    currentIndex = 0;
 }
 
 void LEDController::move() {
     std::cout << "\n";
+    (this->LEDs)[currentIndex]->setState(!((this->LEDs)[currentIndex]->getState()));
+    currentIndex = (currentIndex == (LEDCOUNT-1)) ? 0 : currentIndex+1; 
+
+    //refresh all
     for(int i = 0; i < LEDCOUNT; i++) {
-        (this->LEDs)[i]->setState(!((this->LEDs)[i]->getState()));
+        (this->LEDs)[i]->updateDisplay();
     }
+
     std::cout << "\n";
 }

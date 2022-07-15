@@ -14,6 +14,7 @@ public:
     void switchDirection(); // switch the direction of movement
 private:
     AbstractLEDModel * LEDs[LEDCOUNT];
+    uint8_t currentIndex; //good for up to 256 LEDs
 };
 
 #endif
