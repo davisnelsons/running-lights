@@ -8,7 +8,7 @@ LDIR =../lib
 LIBS=-lstdc++
 
 test:
-	gcc -Wall -c *.cpp
+	gcc -Wall -g -Werror -c *.cpp
 	mv *.o build/
 	gcc -Wall $(LIBS) -o build/test build/*.o 
 	./build/test

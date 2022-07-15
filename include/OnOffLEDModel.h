@@ -1,4 +1,5 @@
 #include "AbstractLEDModel.h"
+#include "AbstractDisplay.h"
 #ifndef ONOFFLEDMODEL_H
 #define ONOFFLEDMODEL_H
 
@@ -8,7 +9,9 @@ class OnOffLEDModel : public AbstractLEDModel
         OnOffLEDModel();
         bool getState();
         void setState(bool state);
-        void attachDisplay();
+        void attachDisplay(AbstractDisplay* display);
+    private:
+        AbstractDisplay* display;
 };
 
 #endif

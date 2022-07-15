@@ -11,10 +11,6 @@ public:
     void addLED(); // add a LED light at the end of the LED array
     void clearLEDs(); // set all LEDs to 0, clear the array
     void switchDirection(); // switch the direction of movement
-
-
-
-
 };
 
 #endif

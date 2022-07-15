@@ -3,7 +3,7 @@
 
 OnOffLEDModel::OnOffLEDModel()
 {
-    ;;
+    display = nullptr;
 };
 
 bool OnOffLEDModel::getState()
@@ -14,9 +14,12 @@ bool OnOffLEDModel::getState()
 void OnOffLEDModel::setState(bool state)
 {
     this->state = state;
+    if(display) {
+        this->display->update();
+    }
 }
 
-void OnOffLEDModel::attachDisplay()
+void OnOffLEDModel::attachDisplay(AbstractDisplay* display)
 {
-    ;;
+    this->display = display;
 }
