@@ -1,5 +1,5 @@
-#include "AbstractLEDModel.h"
-#include "OnOffLEDModel.h"
+#include "include/AbstractLEDModel.h"
+#include "include/OnOffLEDModel.h"
 
 OnOffLEDModel::OnOffLEDModel()
 {
