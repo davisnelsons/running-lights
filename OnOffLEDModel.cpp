@@ -1,19 +1,22 @@
 #include "AbstractLEDModel.h"
+#include "OnOffLEDModel.h"
 
-class OnOffLEDModel : public AbstractLEDModel
+OnOffLEDModel::OnOffLEDModel()
 {
-    public:
-        OnOffLEDModel();
-        bool getState() 
-        {
-            return this->state;
-        }
-        void setState(bool state) 
-        {
-            this->state = state;
-        }
-        void attachDisplay()
-        {
-            ;;
-        }
+    ;;
 };
+
+bool OnOffLEDModel::getState()
+{
+    return this->state;
+}
+
+void OnOffLEDModel::setState(bool state)
+{
+    this->state = state;
+}
+
+void OnOffLEDModel::attachDisplay()
+{
+    ;;
+}
