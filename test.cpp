@@ -23,5 +23,14 @@ int main() {
     led1->setState(true);
     led1->setState(false);
 
+    std::cout << "\n \n";
+
+    LEDController LEDcontroller = LEDController();
+
+
+    LEDcontroller.move();
+
+
+
     std::cout << "\n all fine \n"; 
 }

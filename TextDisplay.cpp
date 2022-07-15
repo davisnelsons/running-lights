@@ -13,5 +13,5 @@ void TextDisplay::update() {
 }
 
 void TextDisplay::outputToDisplay() {
-    std::cout << " " << this->state << " \n";
+    std::cout << " " << this->state << " ";
 }
