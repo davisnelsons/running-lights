@@ -34,6 +34,8 @@ LEDController<OnOffLEDModel> controller;
 void configPins() {
   #ifdef AVR
     DDRD |= (0xFF << 2); //set to output ports D7-D2
+    DDRB |= (0xFF >> 4); // set to output ports B0- B4
+    DDRC |= 0xFF; //set to output all of PORTC
     DDRB &= ~(1 << 5); //set B5 (D13) to input
     PORTB &= ~(1 << 5); //set B5 to pull down
     SREG |= (1 << 7); // global interrupt enable
@@ -67,7 +69,7 @@ int main() {
     controller = LEDController<OnOffLEDModel>();
     initLEDs<OnOffLEDModel, TextDisplay>(controller);
   #endif
-  
+
     while(1) {
       #ifdef AVR
         _delay_ms(50);
