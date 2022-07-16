@@ -7,12 +7,18 @@ template <typename T>
 LEDController<T>::LEDController()
 {
     currentIndex = 0;
+    direction = true;
 }
 
 template <typename T>
 void LEDController<T>::move() {
+    
     (this->LEDs)[currentIndex]->setState(!((this->LEDs)[currentIndex]->getState()));
-    currentIndex = (currentIndex == (LEDCOUNT-1)) ? 0 : currentIndex+1; 
+    if(direction) {
+        currentIndex = (currentIndex == (LEDCOUNT-1)) ? 0 : currentIndex+1; 
+    } else {
+        currentIndex = (currentIndex == 0) ? LEDCOUNT-1 : currentIndex-1; 
+    }
     //refresh all
     for(int i = 0; i < LEDCOUNT; i++) {
         (this->LEDs)[i]->updateDisplay();
@@ -26,5 +32,10 @@ void LEDController<T>::addLED(T * LED, uint8_t index) {
     }
 }
 
+template <typename T>
+void LEDController<T>::switchDirection() {
+    this->direction = !(this->direction);
+    (this->LEDs)[currentIndex]->setState(!((this->LEDs)[currentIndex]->getState())); // ensures no "leftovers" on direction switch (double switch->triple switch)
+}
 
 template class LEDController<OnOffLEDModel>;

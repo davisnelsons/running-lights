@@ -4,7 +4,7 @@
 #include "include/avr_main.h"
 
 
-
+LEDController<OnOffLEDModel> controller;
 
 #ifdef AVR
   int __cxa_guard_acquire(__guard *g) {return !*(char *)(g);};
@@ -19,6 +19,13 @@
   {
     free(ptr);
   }
+
+  ISR(PCINT0_vect)
+  {
+    if((PINB >> 5) & 1) controller.switchDirection();
+  }
+
+
 #endif
 
 
@@ -27,6 +34,11 @@
 void configPins() {
   #ifdef AVR
     DDRD |= (0xFF << 2); //set to output ports D7-D2
+    DDRB &= ~(1 << 5); //set B5 (D13) to input
+    PORTB &= ~(1 << 5); //set B5 to pull down
+    SREG |= (1 << 7); // global interrupt enable
+    PCICR |= 1; //enable pin change interrupt 0
+    PCMSK0 |= (1 << 5); //select pin B5 to trigger interrupt
   #endif
 }
 
@@ -47,69 +59,22 @@ int main() {
 
   #ifdef AVR
     configPins();
-    LEDController<OnOffLEDModel> controller = LEDController<OnOffLEDModel>();
+    controller = LEDController<OnOffLEDModel>();
     initLEDs<OnOffLEDModel, AVRLEDDisplay>(controller);
   #endif
 
   #ifdef LINUX
-    LEDController<OnOffLEDModel> controller = LEDController<OnOffLEDModel>();
+    controller = LEDController<OnOffLEDModel>();
     initLEDs<OnOffLEDModel, TextDisplay>(controller);
   #endif
-
-
+  
     while(1) {
       #ifdef AVR
-        _delay_ms(60);
+        _delay_ms(50);
       #endif
       #ifdef LINUX
         std::cout << "\n";
       #endif
-        
         controller.move();
     }
-
-
-    // OnOffLEDModel* led1;
-    // led1 = new OnOffLEDModel();
-
-    // AVRLEDDisplay* avrLEDDisplay1;
-    // avrLEDDisplay1 = new AVRLEDDisplay(led1, 2);
-
-    // led1->attachDisplay(avrLEDDisplay1);
-
-    // led1->updateDisplay();
-    // led1->setState(true);
-    // led1->updateDisplay();
-    // led1->getState();
-
-     // OnOffLEDModel* led2;
-    // led2 = new OnOffLEDModel();
-    // OnOffLEDModel* led3;
-    // led3 = new OnOffLEDModel();
-    // OnOffLEDModel* led4;
-    // led4 = new OnOffLEDModel();
-    // OnOffLEDModel* led5;
-    // led5 = new OnOffLEDModel();
-    // OnOffLEDModel* led6;
-    // led6 = new OnOffLEDModel();
-
-
-    // AVRLEDDisplay* avrLEDDisplay2;
-    // avrLEDDisplay2 = new AVRLEDDisplay(led2, 3);
-    // led2->attachDisplay(avrLEDDisplay2);
-    // AVRLEDDisplay* avrLEDDisplay3;
-    // avrLEDDisplay3 = new AVRLEDDisplay(led3, 4);
-    // led3->attachDisplay(avrLEDDisplay3);
-    // AVRLEDDisplay* avrLEDDisplay4;
-    // avrLEDDisplay4 = new AVRLEDDisplay(led4, 5);
-    // led4->attachDisplay(avrLEDDisplay4);
-    // AVRLEDDisplay* avrLEDDisplay5;
-    // avrLEDDisplay5 = new AVRLEDDisplay(led5, 6);
-    // led5->attachDisplay(avrLEDDisplay5);
-    // AVRLEDDisplay* avrLEDDisplay6;
-    // avrLEDDisplay6 = new AVRLEDDisplay(led6, 7);
-    // led6->attachDisplay(avrLEDDisplay6);
-
-     //led1->setState(true);
-     //led1->updateDisplay();
 }

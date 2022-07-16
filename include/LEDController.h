@@ -22,6 +22,7 @@ public:
 private:
     T * LEDs[LEDCOUNT];
     uint8_t currentIndex; //good for up to 256 LEDs
+    bool direction;
 };
 
 #endif
