@@ -9,7 +9,6 @@
 #ifdef AVR
 #include <stddef.h>
 #include <stdlib.h>
-#include <util/delay.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 __extension__ typedef int __guard __attribute__((mode (__DI__)));

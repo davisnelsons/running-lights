@@ -5,6 +5,9 @@
 
 
 LEDController<OnOffLEDModel> controller;
+uint8_t timerTick = 0;
+const uint8_t speed = 70;
+
 
 #ifdef AVR
   int __cxa_guard_acquire(__guard *g) {return !*(char *)(g);};
@@ -25,6 +28,14 @@ LEDController<OnOffLEDModel> controller;
     if((PINB >> 5) & 1) controller.switchDirection();
   }
 
+  ISR(TIMER0_OVF_vect) {
+    timerTick++;
+    if(timerTick == (256 - speed)){
+      controller.move();
+      timerTick = 0;
+    } 
+  }
+
 
 #endif
 
@@ -41,6 +52,11 @@ void configPins() {
     SREG |= (1 << 7); // global interrupt enable
     PCICR |= 1; //enable pin change interrupt 0
     PCMSK0 |= (1 << 5); //select pin B5 to trigger interrupt
+    //timer
+    TCCR0A &= ~(0xFF); //set all bits to 0 for normal operation
+    TCCR0B |= 2; // t/64 clock input
+    TIMSK0 |= 1; // enable overflow interrupt
+
   #endif
 }
 
@@ -72,11 +88,11 @@ int main() {
 
     while(1) {
       #ifdef AVR
-        _delay_ms(50);
+        //_delay_ms(50);
       #endif
       #ifdef LINUX
         std::cout << "\n";
-      #endif
         controller.move();
+      #endif
     }
 }

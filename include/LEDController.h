@@ -1,6 +1,6 @@
 #ifndef LEDCONTROLLER_H
 #define LEDCONTROLLER_H
-#define LEDCOUNT 19
+#define LEDCOUNT 6
 #include "AbstractLEDModel.h"
 #ifdef LINUX
     #include <cstdint>
