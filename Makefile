@@ -20,13 +20,13 @@ build-avr:
 	$(CCAVR) -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o avrbuild/abstractLEDModel.o AbstractLEDModel.cpp
 	$(CCAVR) -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o avrbuild/AVRLEDDisplay.o AVRLEDDisplay.cpp
 	$(CCAVR) -Os -DF_CPU=16000000UL -mmcu=atmega328p -c -o avrbuild/OnOffLEDModel.o OnOffLEDModel.cpp
-	$(CCAVR) -Os -DF_CPU=16000000UL $(CFLAGS) -mmcu=atmega328p -c -o avrbuild/AVRLEDController.o AVRLEDController.cpp
+	$(CCAVR) -Os -DF_CPU=16000000UL $(CFLAGS) -mmcu=atmega328p -c -o avrbuild/LEDController.o LEDController.cpp
 	$(CCAVR) -mmcu=atmega328p avrbuild/*.o -o avrbuild/out
 	avr-objcopy -O ihex -R .eeprom avrbuild/out avrbuild/out.hex
 	
 
 flash-avr:
-	avrdude -F -V -c arduino -p ATMEGA328P -P /dev/ttyUSB0 -b 115200 -U flash:w:out.hex
+	avrdude -F -V -c arduino -p ATMEGA328P -P /dev/ttyUSB0 -b 115200 -U flash:w:avrbuild/out.hex
 
 .PHONY: clean
 
