@@ -1,7 +1,7 @@
 #include <avr/io.h>
 #include "include/OnOffLEDModel.h"
 #include "include/AVRLEDDisplay.h"
-#include "include/AVRLEDController.h"
+#include "include/LEDController.h"
 #include <stdlib.h>
 #include "include/avr_main.h"
 #include <util/delay.h>
@@ -26,11 +26,24 @@ void configPins() {
     DDRD |= (0xFF << 2); //set to output ports D7-D2
 }
 
+template <typename T, typename U>
+void initLEDs(LEDController<T>& controller) {
+  for(int i = 0; i < LEDCOUNT; i++) {
+    T * LEDModel = new T(); 
+    U * LEDDisplay;
+    LEDDisplay = new U(LEDModel, i);
+    LEDModel->attachDisplay(LEDDisplay);
+    controller.addLED(LEDModel, i);
+  }
+}
+
 
 int main() {
     configPins();
 
-    AVRLEDController controller = AVRLEDController();
+    LEDController<OnOffLEDModel> controller = LEDController<OnOffLEDModel>();
+    initLEDs<OnOffLEDModel, AVRLEDDisplay>(controller);
+
 
     while(1) {
         _delay_ms(60);

@@ -5,7 +5,7 @@
 
 AVRLEDDisplay::AVRLEDDisplay(AbstractLEDModel* LEDModel, uint8_t bit) {
     this->LEDModel = LEDModel;
-    this->bit = bit;
+    this->bit = bit+2;
     this->update();
 }
 void AVRLEDDisplay::update() {
