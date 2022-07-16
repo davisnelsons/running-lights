@@ -2,7 +2,12 @@
 #define LEDCONTROLLER_H
 #define LEDCOUNT 6
 #include "AbstractLEDModel.h"
-#include "avr_main.h"
+#ifdef LINUX
+    #include <cstdint>
+#endif
+#ifdef AVR
+    #include <stdint.h>
+#endif
 
 template <typename T>
 class LEDController 

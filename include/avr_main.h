@@ -1,5 +1,16 @@
-#include <stddef.h>
+#ifndef AVR_MAIN_H
+#define AVR_MAIN_H
 
+#ifdef LINUX
+    #include "TextDisplay.h"
+    #include <iostream>
+#endif
+
+#ifdef AVR
+#include <stddef.h>
+#include <stdlib.h>
+#include <util/delay.h>
+#include <avr/io.h>
 __extension__ typedef int __guard __attribute__((mode (__DI__)));
 
 extern "C" int __cxa_guard_acquire(__guard *);
@@ -9,3 +20,7 @@ extern "C" void __cxa_pure_virtual(void);
 
 void * operator new(size_t size);
 void operator delete(void * ptr);
+#endif
+
+#endif
+

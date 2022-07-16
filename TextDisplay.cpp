@@ -3,7 +3,7 @@
 #include "include/AbstractLEDModel.h"
 #include <iostream>
 
-TextDisplay::TextDisplay(AbstractLEDModel* LEDModel) {
+TextDisplay::TextDisplay(AbstractLEDModel* LEDModel, int index) {
     this->LEDModel = LEDModel;
     this->update();
 }

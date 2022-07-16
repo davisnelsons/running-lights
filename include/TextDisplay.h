@@ -2,11 +2,11 @@
 #define TEXTDISPLAY_H
 #include "AbstractDisplay.h"
 #include "AbstractLEDModel.h"
-#include "avr_main.h"
+
 class TextDisplay : public AbstractDisplay
 {
     public:
-        TextDisplay(AbstractLEDModel* LEDModel);
+        TextDisplay(AbstractLEDModel* LEDModel, int index);
         void update();
     protected:
         void outputToDisplay();

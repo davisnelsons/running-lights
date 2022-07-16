@@ -1,6 +1,5 @@
 #include "include/AbstractLEDModel.h"
 #include "include/OnOffLEDModel.h"
-#include <avr/io.h>
 
 OnOffLEDModel::OnOffLEDModel()
 {
