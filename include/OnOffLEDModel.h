@@ -2,7 +2,7 @@
 #include "AbstractDisplay.h"
 #ifndef ONOFFLEDMODEL_H
 #define ONOFFLEDMODEL_H
-
+#include "avr_main.h"
 class OnOffLEDModel : public AbstractLEDModel
 {
     public:

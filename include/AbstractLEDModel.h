@@ -2,7 +2,8 @@
 #define ABSTRACTLEDMODEL_H
 
 #include "AbstractDisplay.h"
-#include <cstdint>
+#include "avr_main.h"
+#include <stdint.h>
 class AbstractLEDModel
 {
     protected:

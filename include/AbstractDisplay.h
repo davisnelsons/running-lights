@@ -1,6 +1,6 @@
 #ifndef ABSTRACTDISPLAY_H
 #define ABSTRACTDISPLAY_H
-
+#include "avr_main.h"
 class AbstractDisplay
 {
     public:

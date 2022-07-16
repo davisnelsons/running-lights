@@ -1,0 +1,1 @@
+avr-gcc binutils-avr avr-libc avrdude avr-gcc-c++

@@ -1,12 +1,12 @@
-#ifndef LEDCONTROLLER_H
-#define LEDCONTROLLER_H
+#ifndef AVRLEDCONTROLLER_H
+#define AVRLEDCONTROLLER_H
 #define LEDCOUNT 6
 #include "AbstractLEDModel.h"
 #include "avr_main.h"
-class LEDController 
+class AVRLEDController 
 {
 public:
-    LEDController();
+    AVRLEDController();
 
     void move(); //move the running lights by one step
     void addLED(); // add a LED light at the end of the LED array

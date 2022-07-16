@@ -1,5 +1,6 @@
 #include "include/AbstractLEDModel.h"
 #include "include/OnOffLEDModel.h"
+#include <avr/io.h>
 
 OnOffLEDModel::OnOffLEDModel()
 {
@@ -14,7 +15,6 @@ bool OnOffLEDModel::getState()
 void OnOffLEDModel::setState(bool state)
 {
     this->state = state;
-    
 }
 void OnOffLEDModel::updateDisplay() {
     if(display) {

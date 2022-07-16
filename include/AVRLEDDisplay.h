@@ -1,17 +1,18 @@
-#ifndef TEXTDISPLAY_H
-#define TEXTDISPLAY_H
+#ifndef AVRLEDDISPLAY_H
+#define AVRLEDDISPLAY_H
 #include "AbstractDisplay.h"
 #include "AbstractLEDModel.h"
 #include "avr_main.h"
-class TextDisplay : public AbstractDisplay
+class AVRLEDDisplay : public AbstractDisplay
 {
     public:
-        TextDisplay(AbstractLEDModel* LEDModel);
+        AVRLEDDisplay(AbstractLEDModel* LEDModel, uint8_t bit);
         void update();
     protected:
         void outputToDisplay();
     private:
         AbstractLEDModel* LEDModel;
+        uint8_t bit;
         bool state;
 };
 
