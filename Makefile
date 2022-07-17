@@ -22,8 +22,6 @@ test:
 build-avr:
 	$(CFLAGS) += -DAVR
 	$(CCAVR) -Os -DF_CPU=16000000UL $(CFLAGS) -mmcu=atmega328p -c -o avrbuild/avr_main.o avr_main.cpp
-	$(CCAVR) -Os -DF_CPU=16000000UL $(CFLAGS) -mmcu=atmega328p -c -o avrbuild/abstractDisplay.o AbstractDisplay.cpp
-	$(CCAVR) -Os -DF_CPU=16000000UL $(CFLAGS) -mmcu=atmega328p -c -o avrbuild/abstractLEDModel.o AbstractLEDModel.cpp
 	$(CCAVR) -Os -DF_CPU=16000000UL $(CFLAGS) -mmcu=atmega328p -c -o avrbuild/AVRLEDDisplay.o AVRLEDDisplay.cpp
 	$(CCAVR) -Os -DF_CPU=16000000UL $(CFLAGS) -mmcu=atmega328p -c -o avrbuild/OnOffLEDModel.o OnOffLEDModel.cpp
 	$(CCAVR) -Os -DF_CPU=16000000UL $(CFLAGS) -mmcu=atmega328p -c -o avrbuild/LEDController.o LEDController.cpp

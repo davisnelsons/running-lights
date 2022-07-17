@@ -1,28 +1,35 @@
 #include "include/AbstractLEDModel.h"
 #include "include/OnOffLEDModel.h"
+#include "include/AVRLEDDisplay.h"
 
-OnOffLEDModel::OnOffLEDModel()
+template <typename Display>
+OnOffLEDModel<Display>::OnOffLEDModel()
 {
+    
     display = nullptr;
 };
 
-bool OnOffLEDModel::getState()
+template <typename Display>
+bool OnOffLEDModel<Display>::getState()
 {
     return this->state;
 }
 
-void OnOffLEDModel::setState(bool state)
+template <typename Display>
+void OnOffLEDModel<Display>::setState(bool state)
 {
     this->state = state;
 }
-void OnOffLEDModel::updateDisplay() {
-    if(display) {
-        this->display->outputToDisplay(this->state);
-    }
+
+template <typename Display>
+void OnOffLEDModel<Display>::updateDisplay() {
+    this->display->outputToDisplay(this->state);
 }
 
-
-void OnOffLEDModel::attachDisplay(AbstractDisplay* display)
-{
+template <typename Display>
+void OnOffLEDModel<Display>::attachDisplay(Display* display)
+{ 
     this->display = display;
 }
+
+template class OnOffLEDModel<AVRLEDDisplay>;

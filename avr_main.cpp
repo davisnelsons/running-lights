@@ -4,9 +4,10 @@
 #include "include/avr_main.h"
 
 
-LEDController<OnOffLEDModel> controller;
+
+LEDController<OnOffLEDModel<AVRLEDDisplay>> controller;
 uint8_t timerTick = 0;
-const uint8_t speed = 50;
+const uint8_t speed = 40;
 
 
 #ifdef AVR
@@ -60,25 +61,32 @@ void configPins() {
   #endif
 }
 
-
-template <typename T, typename U>
-void initLEDs(LEDController<T>& controller) {
+/*
+template <typename Model, typename Display>
+void initLEDs(LEDController<Model>& controller) {
   for(int i = 0; i < LEDCOUNT; i++) {
-    T * LEDModel = new T(); 
-    U * LEDDisplay;
-    LEDDisplay = new U(i);
+    Model * LEDModel = new Model(); 
+    Display * LEDDisplay;
+    LEDDisplay = new Display(i);
     LEDModel->attachDisplay(LEDDisplay);
     controller.addLED(LEDModel, i);
   }
 }
+*/
 
 
 int main() {
 
   #ifdef AVR
-    controller = LEDController<OnOffLEDModel>();
-    initLEDs<OnOffLEDModel, AVRLEDDisplay>(controller);
     configPins();
+    controller = LEDController<OnOffLEDModel<AVRLEDDisplay>>();
+    //initLEDs<OnOffLEDModel<AVRLEDDisplay>, AVRLEDDisplay>(controller);
+    for(int i = 0; i < LEDCOUNT; i++) {
+      OnOffLEDModel<AVRLEDDisplay> * LEDModel = new OnOffLEDModel<AVRLEDDisplay>(); 
+      AVRLEDDisplay * LEDDisplay = new AVRLEDDisplay(i);
+      LEDModel->attachDisplay(LEDDisplay);
+      controller.addLED(LEDModel, i);
+    }
   #endif
 
   #ifdef LINUX

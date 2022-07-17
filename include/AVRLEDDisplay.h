@@ -3,7 +3,7 @@
 #include "AbstractDisplay.h"
 #include "AbstractLEDModel.h"
 #include "avr_main.h"
-class AVRLEDDisplay : public AbstractDisplay
+class AVRLEDDisplay
 {
     public:
         AVRLEDDisplay(uint8_t bit);
@@ -11,6 +11,4 @@ class AVRLEDDisplay : public AbstractDisplay
     private:
         uint8_t bit;
 };
-
-
 #endif
