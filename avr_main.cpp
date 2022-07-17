@@ -6,7 +6,7 @@
 
 LEDController<OnOffLEDModel> controller;
 uint8_t timerTick = 0;
-const uint8_t speed = 70;
+const uint8_t speed = 50;
 
 
 #ifdef AVR
@@ -66,7 +66,7 @@ void initLEDs(LEDController<T>& controller) {
   for(int i = 0; i < LEDCOUNT; i++) {
     T * LEDModel = new T(); 
     U * LEDDisplay;
-    LEDDisplay = new U(LEDModel, i);
+    LEDDisplay = new U(i);
     LEDModel->attachDisplay(LEDDisplay);
     controller.addLED(LEDModel, i);
   }

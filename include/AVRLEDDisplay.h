@@ -6,14 +6,10 @@
 class AVRLEDDisplay : public AbstractDisplay
 {
     public:
-        AVRLEDDisplay(AbstractLEDModel* LEDModel, uint8_t bit);
-        void update();
-    protected:
-        void outputToDisplay();
+        AVRLEDDisplay(uint8_t bit);
+        void outputToDisplay(bool output);
     private:
-        AbstractLEDModel* LEDModel;
         uint8_t bit;
-        bool state;
 };
 
 

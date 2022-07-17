@@ -5,9 +5,9 @@ class AbstractDisplay
 {
     public:
         AbstractDisplay() {};
-        virtual void update() = 0;
+        virtual void outputToDisplay(bool output) = 0;
     protected:
-        virtual void outputToDisplay() = 0;
+        
 };
 
 

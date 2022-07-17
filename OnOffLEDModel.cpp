@@ -17,7 +17,7 @@ void OnOffLEDModel::setState(bool state)
 }
 void OnOffLEDModel::updateDisplay() {
     if(display) {
-        this->display->update();
+        this->display->outputToDisplay(this->state);
     }
 }
 

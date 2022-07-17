@@ -10,25 +10,17 @@
 *
 */
 
-
-
-AVRLEDDisplay::AVRLEDDisplay(AbstractLEDModel* LEDModel, uint8_t bit) {
-    this->LEDModel = LEDModel;
+AVRLEDDisplay::AVRLEDDisplay(uint8_t bit) {
     this->bit = bit;
-    this->update();
-}
-void AVRLEDDisplay::update() {
-    this->state = this->LEDModel->getState();
-    this->outputToDisplay();
 }
 
-void AVRLEDDisplay::outputToDisplay() {
+void AVRLEDDisplay::outputToDisplay(bool output) {
     if(bit < 6) {
-        //PORTB ^= (-(this->state) ^ PORTB) & (1 << (bit));
-        PORTD ^= (-(this->state) ^ PIND) & (1 << (bit + 2));
+        //PORTB ^= (-(output) ^ PORTB) & (1 << (bit));
+        PORTD ^= (-(output) ^ PIND) & (1 << (bit + 2));
     } else if (bit >= 6 && bit < 12) {
-        PORTB ^= (-(this->state) ^ PINB) & (1 << (bit - 6));
+        PORTB ^= (-(output) ^ PINB) & (1 << (bit - 6));
     } else if (bit >= 12 && bit < 19) {
-        PORTC ^= (-(this->state) ^ PINC) & (1 << (bit - 12));
+        PORTC ^= (-(output) ^ PINC) & (1 << (bit - 12));
     }
 }
