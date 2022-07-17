@@ -76,9 +76,9 @@ void initLEDs(LEDController<T>& controller) {
 int main() {
 
   #ifdef AVR
-    configPins();
     controller = LEDController<OnOffLEDModel>();
     initLEDs<OnOffLEDModel, AVRLEDDisplay>(controller);
+    configPins();
   #endif
 
   #ifdef LINUX
@@ -88,7 +88,7 @@ int main() {
 
     while(1) {
       #ifdef AVR
-        //_delay_ms(50);
+
       #endif
       #ifdef LINUX
         std::cout << "\n";

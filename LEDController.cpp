@@ -8,6 +8,11 @@ LEDController<T>::LEDController()
 {
     currentIndex = 0;
     direction = true;
+
+    #if(DIRECTION==1)
+        direction = false;
+        currentIndex = LEDCOUNT-1; //for consistency
+    #endif
 }
 
 template <typename T>
