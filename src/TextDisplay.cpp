@@ -1,17 +1,11 @@
 #include "include/TextDisplay.h"
-#include "include/AbstractDisplay.h"
-#include "include/AbstractLEDModel.h"
 #include <iostream>
+#include <cstdint>
 
-TextDisplay::TextDisplay(AbstractLEDModel* LEDModel, int index) {
-    this->LEDModel = LEDModel;
-    this->update();
-}
-void TextDisplay::update() {
-    this->state = this->LEDModel->getState();
-    this->outputToDisplay();
+TextDisplay::TextDisplay(uint8_t index) {
+    this->index = index;
 }
 
-void TextDisplay::outputToDisplay() {
-    std::cout << " " << this->state << " ";
+void TextDisplay::outputToDisplay(bool output) {
+    std::cout << " " << output << " ";
 }

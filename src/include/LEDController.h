@@ -4,7 +4,6 @@
 #ifndef LEDCOUNT
 #define LEDCOUNT 17
 #endif
-#include "AbstractLEDModel.h"
 #ifdef LINUX
     #include <cstdint>
 #endif

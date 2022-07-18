@@ -1,6 +1,4 @@
 #include "include/AVRLEDDisplay.h"
-#include "include/AbstractDisplay.h"
-#include "include/AbstractLEDModel.h"
 #include <avr/io.h>
 /*
 *   The LEDs will be assigned as follows

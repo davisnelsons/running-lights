@@ -1,6 +1,6 @@
-#include "include/AbstractLEDModel.h"
 #include "include/OnOffLEDModel.h"
 #include "include/AVRLEDDisplay.h"
+#include "include/TextDisplay.h"
 
 template <typename Display>
 OnOffLEDModel<Display>::OnOffLEDModel()
@@ -31,5 +31,9 @@ void OnOffLEDModel<Display>::attachDisplay(Display* display)
 { 
     this->display = display;
 }
-
+#ifdef AVR
 template class OnOffLEDModel<AVRLEDDisplay>;
+#endif
+#ifdef LINUX
+template class OnOffLEDModel<TextDisplay>;
+#endif

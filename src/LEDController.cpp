@@ -31,7 +31,12 @@ void LEDController<T>::move() {
     } else {
         this->currentIndex = (this->currentIndex == 0) ? LEDCOUNT-1 : this->currentIndex-1; 
     }
+    #ifdef AVR
     Model->updateDisplay();
+    #endif
+    #ifdef LINUX
+    this->updateLEDs();
+    #endif
 }    
 
 template <typename T>
@@ -61,5 +66,9 @@ void LEDController<T>::updateLEDs()
     }
 }
 
-
+#ifdef AVR
 template class LEDController<OnOffLEDModel<AVRLEDDisplay>>;
+#endif
+#ifdef LINUX
+template class LEDController<OnOffLEDModel<TextDisplay>>;
+#endif

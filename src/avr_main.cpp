@@ -1,11 +1,18 @@
 #include "include/OnOffLEDModel.h"
-#include "include/AVRLEDDisplay.h"
 #include "include/LEDController.h"
 #include "include/avr_main.h"
 
 
+#ifdef AVR
+  #include "include/AVRLEDDisplay.h"
+  LEDController<OnOffLEDModel<AVRLEDDisplay>> controller;
+#endif
 
-LEDController<OnOffLEDModel<AVRLEDDisplay>> controller;
+#ifdef LINUX
+  #include "include/TextDisplay.h"
+  LEDController<OnOffLEDModel<TextDisplay>> controller;
+#endif
+
 uint8_t timerTick = 0;
 const uint8_t speed = 230;
 
@@ -80,14 +87,11 @@ int main() {
   #endif
 
   #ifdef LINUX
-    controller = LEDController<OnOffLEDModel>();
-    initLEDs<OnOffLEDModel, TextDisplay>(controller);
+    controller = LEDController<OnOffLEDModel<TextDisplay>>();
+    initLEDs<OnOffLEDModel<TextDisplay>, TextDisplay>(controller);
   #endif
 
     while(1) {
-      #ifdef AVR
-
-      #endif
       #ifdef LINUX
         std::cout << "\n";
         controller.move();

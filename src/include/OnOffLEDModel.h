@@ -1,8 +1,5 @@
 #ifndef ONOFFLEDMODEL_H
 #define ONOFFLEDMODEL_H
-#include "AbstractLEDModel.h"
-#include "AbstractDisplay.h"
-
 #include "avr_main.h"
 
 template <typename Display>

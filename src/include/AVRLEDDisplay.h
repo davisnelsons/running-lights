@@ -1,7 +1,8 @@
+#ifdef AVR
+
 #ifndef AVRLEDDISPLAY_H
 #define AVRLEDDISPLAY_H
-#include "AbstractDisplay.h"
-#include "AbstractLEDModel.h"
+
 #include "avr_main.h"
 class AVRLEDDisplay
 {
@@ -12,4 +13,6 @@ class AVRLEDDisplay
         uint8_t bit;
         volatile uint8_t * port;
 };
+#endif
+
 #endif
