@@ -18,8 +18,9 @@ LEDController<T>::LEDController()
 template <typename T>
 void LEDController<T>::move() {
     T * Model = (T *) (this->LEDs)[this->currentIndex];
-    //some weird bool type conversion prevents shortening
+    
     if(!Model) return;
+    //some weird bool type conversion prevents shortening
     if(Model->getState()){
         Model->setState(false);
     } else {
