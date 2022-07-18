@@ -9,6 +9,11 @@
     #include <stdint.h>
 #endif
 
+typedef enum direction_t {
+    left,
+    right
+} direction_t;
+
 template <typename T>
 class LEDController 
 {
@@ -21,7 +26,7 @@ public:
 private:
     T * LEDs[LEDCOUNT];
     uint8_t currentIndex; //good for up to 256 LEDs
-    bool direction;
+    direction_t direction;
 };
 
 #endif

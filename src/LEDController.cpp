@@ -7,10 +7,10 @@ template <typename T>
 LEDController<T>::LEDController()
 {
     this->currentIndex = 0;
-    this->direction = true;
+    this->direction = right;
 
     #if(DIRECTION==1)
-        this->direction = false;
+        this->direction = left;
         currentIndex = LEDCOUNT-1; //for consistency
     #endif
 }
@@ -25,7 +25,7 @@ void LEDController<T>::move() {
     } else {
         Model->setState(true);
     }
-    if(this->direction) {
+    if(this->direction == right) {
         this->currentIndex = (this->currentIndex == (LEDCOUNT-1)) ? 0 : this->currentIndex+1; 
     } else {
         this->currentIndex = (this->currentIndex == 0) ? LEDCOUNT-1 : this->currentIndex-1; 
@@ -49,7 +49,7 @@ void LEDController<T>::addLED(T * LED, const uint8_t index) {
 
 template <typename T>
 void LEDController<T>::switchDirection() {
-    this->direction = !(this->direction);
+    this->direction = (direction_t) !(this->direction);
     T * Model = (T *) (this->LEDs)[this->currentIndex];
     if(!Model) return;
     if(Model->getState()){
