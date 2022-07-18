@@ -1,16 +1,15 @@
 #ifndef ONOFFLEDMODEL_H
 #define ONOFFLEDMODEL_H
-#include "avr_main.h"
 
 template <typename Display>
 class OnOffLEDModel
 {
     public:
         OnOffLEDModel();
-        bool getState();
-        void setState(bool state);
+        bool getState() const;
+        void setState(const bool state);
         void attachDisplay(Display * display);
-        void updateDisplay();
+        void updateDisplay() const;
     private:
         Display * display;
         bool state;

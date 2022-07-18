@@ -8,7 +8,7 @@
 *
 */
 
-AVRLEDDisplay::AVRLEDDisplay(uint8_t bit) {
+AVRLEDDisplay::AVRLEDDisplay(const uint8_t bit) {
     if(bit < 6) {
         //Bits 0 - 5: D2 - D7 (PD2 - PD7)
         DDRD |= (1 << (bit + 2));
@@ -29,6 +29,6 @@ AVRLEDDisplay::AVRLEDDisplay(uint8_t bit) {
     //*(this->port) &= ~(1 << (this->bit));
 }
 
-void AVRLEDDisplay::outputToDisplay(bool output) {
+void AVRLEDDisplay::outputToDisplay(const bool output) {
     *(this->port) ^= (-(output) ^ *(this->port - 2)) & (1 << (this->bit)); // this->port - 2 --> PINX is always two bytes back from PORTX on AVR's
 }

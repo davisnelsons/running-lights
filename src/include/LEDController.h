@@ -1,9 +1,7 @@
 #ifndef LEDCONTROLLER_H
 #define LEDCONTROLLER_H
+#include "config.h"
 
-#ifndef LEDCOUNT
-#define LEDCOUNT 17
-#endif
 #ifdef LINUX
     #include <cstdint>
 #endif
@@ -16,10 +14,8 @@ class LEDController
 {
 public:
     LEDController();
-
     void move(); //move the running lights by one step
-    void addLED(T * LED, uint8_t index); // add a LED light at the end of the LED array
-    void clearLEDs(); // set all LEDs to 0, clear the array
+    void addLED(T * LED, const uint8_t index); // add a LED light at the end of the LED array
     void switchDirection(); // switch the direction of movement
     void updateLEDs();
 private:

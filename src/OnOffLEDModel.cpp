@@ -10,25 +10,26 @@ OnOffLEDModel<Display>::OnOffLEDModel()
 };
 
 template <typename Display>
-bool OnOffLEDModel<Display>::getState()
+bool OnOffLEDModel<Display>::getState() const
 {
     return this->state;
 }
 
 template <typename Display>
-void OnOffLEDModel<Display>::setState(bool state)
+void OnOffLEDModel<Display>::setState(const bool state)
 {
     this->state = state;
 }
 
 template <typename Display>
-void OnOffLEDModel<Display>::updateDisplay() {
+void OnOffLEDModel<Display>::updateDisplay() const {
     if(this->display) this->display->outputToDisplay(this->state);
 }
 
 template <typename Display>
 void OnOffLEDModel<Display>::attachDisplay(Display* display)
-{ 
+{   
+    if(!display) return;
     this->display = display;
 }
 #ifdef AVR

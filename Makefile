@@ -11,18 +11,14 @@ LIBS=
 
 SRCDIR=src
 
-MINFILES = $(SRCDIR)/LEDController.cpp $(SRCDIR)/avr_main.cpp $(SRCDIR)/OnOffLEDModel.cpp 
+MINFILES = $(SRCDIR)/LEDController.cpp $(SRCDIR)/main.cpp $(SRCDIR)/OnOffLEDModel.cpp 
 LINFILES = $(SRCDIR)/TextDisplay.cpp
 AVRFILES = $(SRCDIR)/AVRLEDDisplay.cpp
 
-test:
-	g++ -Wall -g -Werror -c *.cpp
-	mv *.o build/
-	g++ -Wall $(LIBS) -o build/test build/*.o 
-	./build/test
 
 build-avr:
-	$(CCAVR) -Os -DF_CPU=16000000UL $(CFLAGS) -DAVR -mmcu=atmega328p -c -o avrbuild/avr_main.o $(SRCDIR)/avr_main.cpp
+	mkdir -p avrbuild
+	$(CCAVR) -Os -DF_CPU=16000000UL $(CFLAGS) -DAVR -mmcu=atmega328p -c -o avrbuild/avr_main.o $(SRCDIR)/main.cpp
 	$(CCAVR) -Os -DF_CPU=16000000UL $(CFLAGS) -DAVR -mmcu=atmega328p -c -o avrbuild/AVRLEDDisplay.o $(SRCDIR)/AVRLEDDisplay.cpp
 	$(CCAVR) -Os -DF_CPU=16000000UL $(CFLAGS) -DAVR -mmcu=atmega328p -c -o avrbuild/OnOffLEDModel.o $(SRCDIR)/OnOffLEDModel.cpp
 	$(CCAVR) -Os -DF_CPU=16000000UL $(CFLAGS) -DAVR -mmcu=atmega328p -c -o avrbuild/LEDController.o $(SRCDIR)/LEDController.cpp
@@ -30,7 +26,7 @@ build-avr:
 	avr-objcopy -O ihex -R .eeprom avrbuild/out avrbuild/out.hex
 
 build-linux:
-	
+	mkdir -p build
 	$(CCLIN) $(CFLAGS) -DLINUX -c $(MINFILES) $(LINFILES)
 	mv *.o build/
 	$(CCLIN) $(CFLAGS) -DLINUX -o build/out build/*.o
