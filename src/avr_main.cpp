@@ -45,9 +45,6 @@ const uint8_t speed = 230;
 
 void configPins() {
   #ifdef AVR
-    //DDRD |= (0xFF << 2); //set to output ports D7-D2
-    //DDRB |= (0xFF >> 4); // set to output ports B0- B4
-    //DDRC |= 0xFF; //set to output all of PORTC
     DDRB &= ~(1 << 5); //set B5 (D13) to input
     PORTB &= ~(1 << 5); //set B5 to pull down
     SREG |= (1 << 7); // global interrupt enable
@@ -57,11 +54,10 @@ void configPins() {
     TCCR0A &= ~(0xFF); //set all bits to 0 for normal operation
     TCCR0B |= 3; // t/64 clock input
     TIMSK0 |= 1; // enable overflow interrupt
-
   #endif
 }
 
-/*
+
 template <typename Model, typename Display>
 void initLEDs(LEDController<Model>& controller) {
   for(int i = 0; i < LEDCOUNT; i++) {
@@ -72,7 +68,7 @@ void initLEDs(LEDController<Model>& controller) {
     controller.addLED(LEDModel, i);
   }
 }
-*/
+
 
 
 int main() {
@@ -80,13 +76,7 @@ int main() {
   #ifdef AVR
     configPins();
     controller = LEDController<OnOffLEDModel<AVRLEDDisplay>>();
-    //initLEDs<OnOffLEDModel<AVRLEDDisplay>, AVRLEDDisplay>(controller);
-    for(int i = 0; i < LEDCOUNT; i++) {
-      OnOffLEDModel<AVRLEDDisplay> * LEDModel = new OnOffLEDModel<AVRLEDDisplay>(); 
-      AVRLEDDisplay * LEDDisplay = new AVRLEDDisplay(i);
-      LEDModel->attachDisplay(LEDDisplay);
-      controller.addLED(LEDModel, i);
-    }
+    initLEDs<OnOffLEDModel<AVRLEDDisplay>, AVRLEDDisplay>(controller);
   #endif
 
   #ifdef LINUX
