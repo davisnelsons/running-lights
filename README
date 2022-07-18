@@ -1,1 +1,15 @@
+Veidots priekš AVR ATMega328p, testēts uz Arduino Nano. Arduino bibliotēkas netika izmantotas, izņemot bootloaderu, jo tas ir vienīgais veids kā flashot bez ISP programmētāja (kas man nebija pieejams). Iespējams flashot arī ar ISP izmainot Makefile. 
+
+
+Atkarības:
+
 avr-gcc binutils-avr avr-libc avrdude avr-gcc-c++
+
+https://www.nongnu.org/avr-libc/
+https://www.nongnu.org/avrdude/
+
+
+sudo apt install avr-gcc binutils-avr avr-libc avr-gcc-c++
+sudo apt install avrdude
+
+
