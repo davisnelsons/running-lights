@@ -10,5 +10,6 @@ class AVRLEDDisplay
         void outputToDisplay(bool output);
     private:
         uint8_t bit;
+        volatile uint8_t * port;
 };
 #endif

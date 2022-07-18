@@ -17,8 +17,7 @@ LEDController<T>::LEDController()
 
 template <typename T>
 void LEDController<T>::move() {
-    //(this->LEDs)[currentIndex]->setState(!((this->LEDs)[this->currentIndex]->getState()));
-    T * Model = (T *) (this->LEDs)[currentIndex];
+    T * Model = (T *) (this->LEDs)[this->currentIndex];
 
     //some weird bool type conversion prevents shortening
     if(Model->getState()){
@@ -32,11 +31,8 @@ void LEDController<T>::move() {
     } else {
         this->currentIndex = (this->currentIndex == 0) ? LEDCOUNT-1 : this->currentIndex-1; 
     }
-    //refresh all
-    for(int i = 0; i < LEDCOUNT; i++) {
-        Model->updateDisplay();
-    }
-}
+    Model->updateDisplay();
+}    
 
 template <typename T>
 void LEDController<T>::addLED(T * LED, uint8_t index) {
@@ -48,7 +44,22 @@ void LEDController<T>::addLED(T * LED, uint8_t index) {
 template <typename T>
 void LEDController<T>::switchDirection() {
     this->direction = !(this->direction);
-    (this->LEDs)[this->currentIndex]->setState(!((this->LEDs)[this->currentIndex]->getState())); // ensures no "leftovers" on direction switch (double switch->triple switch)
+    T * Model = (T *) (this->LEDs)[this->currentIndex];
+    if(Model->getState()){
+        Model->setState(false);
+    } else {
+        Model->setState(true);
+    }
 }
+
+template <typename T>
+void LEDController<T>::updateLEDs()
+{
+    //refresh all
+    for(int i = 0; i < LEDCOUNT; i++) {
+        this->LEDs[i]->updateDisplay();
+    }
+}
+
 
 template class LEDController<OnOffLEDModel<AVRLEDDisplay>>;

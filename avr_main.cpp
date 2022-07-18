@@ -7,7 +7,7 @@
 
 LEDController<OnOffLEDModel<AVRLEDDisplay>> controller;
 uint8_t timerTick = 0;
-const uint8_t speed = 40;
+const uint8_t speed = 230;
 
 
 #ifdef AVR
@@ -45,9 +45,9 @@ const uint8_t speed = 40;
 
 void configPins() {
   #ifdef AVR
-    DDRD |= (0xFF << 2); //set to output ports D7-D2
-    DDRB |= (0xFF >> 4); // set to output ports B0- B4
-    DDRC |= 0xFF; //set to output all of PORTC
+    //DDRD |= (0xFF << 2); //set to output ports D7-D2
+    //DDRB |= (0xFF >> 4); // set to output ports B0- B4
+    //DDRC |= 0xFF; //set to output all of PORTC
     DDRB &= ~(1 << 5); //set B5 (D13) to input
     PORTB &= ~(1 << 5); //set B5 to pull down
     SREG |= (1 << 7); // global interrupt enable
@@ -55,7 +55,7 @@ void configPins() {
     PCMSK0 |= (1 << 5); //select pin B5 to trigger interrupt
     //timer
     TCCR0A &= ~(0xFF); //set all bits to 0 for normal operation
-    TCCR0B |= 2; // t/64 clock input
+    TCCR0B |= 3; // t/64 clock input
     TIMSK0 |= 1; // enable overflow interrupt
 
   #endif

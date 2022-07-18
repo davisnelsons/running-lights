@@ -2,7 +2,7 @@ IDIR =../include
 CC=gcc
 CCAVR = avr-c++
 CCLIN = g++
-override CFLAGS +=--pedantic -Wall -Werror
+override CFLAGS +=-pedantic -Wall -Werror
 
 ODIR=build
 LDIR =../lib

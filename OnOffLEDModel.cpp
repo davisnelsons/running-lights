@@ -5,8 +5,8 @@
 template <typename Display>
 OnOffLEDModel<Display>::OnOffLEDModel()
 {
-    
     display = nullptr;
+    this->state = false;
 };
 
 template <typename Display>
@@ -23,7 +23,7 @@ void OnOffLEDModel<Display>::setState(bool state)
 
 template <typename Display>
 void OnOffLEDModel<Display>::updateDisplay() {
-    this->display->outputToDisplay(this->state);
+    if(this->display) this->display->outputToDisplay(this->state);
 }
 
 template <typename Display>
