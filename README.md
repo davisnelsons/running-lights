@@ -16,7 +16,7 @@ https://www.nongnu.org/avr-libc/
 https://www.nongnu.org/avrdude/
 
 
-    sudo apt install avr-gcc binutils-avr avr-libc avr-gcc-c++
+    sudo apt install gcc-avr binutils-avr avr-libc avr-gcc-c++
 
     sudo apt install avrdude
 
