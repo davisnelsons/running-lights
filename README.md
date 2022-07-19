@@ -21,7 +21,9 @@ https://www.nongnu.org/avrdude/
     sudo apt install avrdude
 
 
-Kompilēju uz Fedora 36, gcc 11.2.0
+Kompilēju uz Fedora 36, gcc 11.2.0. Ja caur apt pieejamas tikai vecākas versijas, iespējams jābūvē kā aprakstīts
+
+https://onlinedocs.microchip.com/pr/GUID-317042D4-BCCE-4065-BB05-AC4312DBC2C4-en-US-2/index.html?GUID-41EADB64-AF46-4891-8D49-4A7FBACB147B
 
 # AVR
 
