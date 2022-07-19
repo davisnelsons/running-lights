@@ -21,6 +21,8 @@ https://www.nongnu.org/avrdude/
     sudo apt install avrdude
 
 
+Kompilēju uz Fedora 36, gcc 11.2.0
+
 # AVR
 
 
