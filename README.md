@@ -1,4 +1,7 @@
-Veidots priekš AVR ATMega328p, testēts uz Arduino Nano. Arduino bibliotēkas netika izmantotas, toties tika atstāts bootloaders, jo tas ir vienīgais veids kā flashot caur avrdude bez ISP programmētāja (kas man nebija pieejams). Iespējams flashot arī ar ISP nedaudz izmainot Makefile. 
+Veidots priekš AVR ATMega328p, testēts uz Arduino Nano. Arduino bibliotēkas netika izmantotas, toties tika atstāts bootloaders, jo tas ir vienīgais veids kā flashot caur avrdude bez ISP programmētāja (kas man nebija pieejams). Iespējams flashot arī ar ISP nedaudz izmainot Makefile.
+
+
+No AVR bibliotēkas izmantots <avr/io.h> un <avr/interrupt.h>
 
 
 Ir iespēja daļēji testēt arī pa taisno uz linux (man sākumā nebija pieejams mikrokontrolieris), viss tiek izvadīts uz std::cout. Platformas izvēle notiek caur #ifdefiem (izmantojot makefile kā aprakstīts zemāk nevajadzētu būt problēmām). Tad gan nevar mainīt virzienu izmantojot pogu (aprakstīts vēlāk).
