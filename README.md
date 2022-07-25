@@ -1,3 +1,23 @@
+Made for AVR ATMega328P, tested on Arduino Nano
+
+You will need
+    avr-gcc binutils-avr avr-libc avrdude avr-gcc-c++
+
+
+Use the makefile to compile for AVR:
+
+
+    make build-avr
+    make flash-avr
+    
+Or for linux:
+
+    make build-linux
+
+
+
+
+
 Veidots priekš AVR ATMega328p, testēts uz Arduino Nano. Arduino bibliotēkas netika izmantotas, toties tika atstāts bootloaders, jo tas ir vienīgais veids kā flashot caur avrdude bez ISP programmētāja (kas man nebija pieejams). Iespējams flashot arī ar ISP nedaudz izmainot Makefile.
 
 
